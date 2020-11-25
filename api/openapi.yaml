@@ -1,0 +1,127 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: dagarpez@hotmail.com
+    name: dagarpez
+  description: Esta API provee los servicios necesarios para gestionar los datos enviados
+    por la web de prueba
+  title: Prueba de Programacion
+  version: "1.0"
+servers:
+- url: https://raw.githubusercontent.com/
+paths:
+  /addNumber:
+    get:
+      description: Devuelve todos los datos relacionados con el historico de numeros
+      operationId: getAddNumbers
+      responses:
+        201:
+          content:
+            text/plain:
+              schema:
+                example: Created
+                title: Created
+                type: string
+          description: Created
+        404:
+          content:
+            text/plain:
+              schema:
+                example: Not found
+                title: Endpoint not found
+                type: string
+          description: Not found response
+        405:
+          content:
+            text/plain:
+              schema:
+                example: The format is not valid
+                title: Invalid input
+                type: string
+          description: Invalid input
+      summary: Devuelve todos los datos relacionados con el historico de suma numeros
+      tags:
+      - Add Numbers
+      x-swagger-router-controller: AddNumbers
+    post:
+      description: Creacion de nuevos datos asociados a la calidad del aire.
+      operationId: postNumbers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Number'
+        required: true
+      responses:
+        201:
+          content:
+            text/plain:
+              schema:
+                example: Created
+                title: Created
+                type: string
+          description: Created
+        404:
+          content:
+            text/plain:
+              schema:
+                example: Not found
+                title: Endpoint not found
+                type: string
+          description: Not found response
+        405:
+          content:
+            text/plain:
+              schema:
+                example: The format is not valid
+                title: Invalid input
+                type: string
+          description: Invalid input
+      summary: Registra un nuevo conjunto de datos para sumar numeros
+      tags:
+      - Add Numbers
+      x-swagger-router-controller: AddNumbers
+components:
+  responses:
+    201:
+      content:
+        text/plain:
+          schema:
+            example: Created
+            title: Created
+            type: string
+      description: Created
+    404:
+      content:
+        text/plain:
+          schema:
+            example: Not found
+            title: Endpoint not found
+            type: string
+      description: Not found response
+    405:
+      content:
+        text/plain:
+          schema:
+            example: The format is not valid
+            title: Invalid input
+            type: string
+      description: Invalid input
+  schemas:
+    Number:
+      example:
+        date: 01/10/2019
+        amount: 45.5
+        type: 1
+      properties:
+        type:
+          example: 1
+          format: int64
+          type: integer
+        amount:
+          example: 45.5
+          type: number
+        date:
+          example: 01/10/2019
+          type: string
+      type: object
